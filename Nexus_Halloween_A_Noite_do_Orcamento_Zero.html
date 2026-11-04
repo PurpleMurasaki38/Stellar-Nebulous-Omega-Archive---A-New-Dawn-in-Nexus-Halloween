@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXUS — Especial de Halloween | A Noite do Orçamento Zero</title>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --bg-card: #111827;
+    --border: #1e293b;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-soft: #0ea5e9;
+    --highlight: #7dd3fc;
+    --chapter: #38bdf8;
+    --danger: #f87171;
+    --warning: #fbbf24;
+    --halloween: #fb923c;
+    --pumpkin: #f97316;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 1.05rem;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10, 14, 23, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0.75rem 1.5rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  }
+
+  nav .logo {
+    font-weight: 700; font-size: 1rem; color: var(--halloween);
+    letter-spacing: 0.08em; text-decoration: none; white-space: nowrap;
+  }
+
+  nav .nav-links { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; }
+
+  nav .nav-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 0.78rem;
+    padding: 0.3rem 0.55rem; border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  nav .nav-links a:hover { color: var(--halloween); background: rgba(251, 146, 60, 0.12); }
+
+  main { max-width: 720px; margin: 0 auto; padding: 5.5rem 1.5rem 4rem; }
+
+  .cover {
+    text-align: center; padding: 4rem 1rem 5rem;
+    border-bottom: 1px solid var(--border); margin-bottom: 3rem;
+  }
+
+  .cover .series {
+    font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 1.5rem;
+  }
+
+  .cover h1 {
+    font-size: clamp(1.8rem, 6vw, 2.6rem); font-weight: 800;
+    color: var(--halloween); letter-spacing: 0.04em; margin-bottom: 0.8rem;
+    line-height: 1.25;
+  }
+
+  .cover .subtitle {
+    font-size: 1.05rem; color: var(--highlight); margin-bottom: 1.8rem; font-weight: 500;
+  }
+
+  .cover .edition {
+    font-size: 0.9rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); border-top: 1px solid var(--border);
+    padding-top: 1.5rem; display: inline-block;
+  }
+
+  .chapter { margin-bottom: 3.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+  .chapter:last-of-type { border-bottom: none; }
+  .chapter-header { margin-bottom: 1.6rem; }
+  .chapter-number {
+    font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--pumpkin); margin-bottom: 0.35rem;
+  }
+  .chapter h2 {
+    font-size: 1.35rem; font-weight: 700; color: var(--halloween);
+    letter-spacing: 0.02em; line-height: 1.35;
+  }
+
+  .chapter p { margin-bottom: 1.1rem; text-align: justify; hyphens: auto; }
+  .chapter p:last-child { margin-bottom: 0; }
+
+  .dialogue {
+    color: var(--highlight); font-style: italic; margin: 1.1rem 0;
+    padding-left: 1rem; border-left: 3px solid rgba(56, 189, 248, 0.35);
+  }
+
+  .dialogue-halloween {
+    color: var(--halloween); font-style: italic; margin: 1.1rem 0;
+    padding-left: 1rem; border-left: 3px solid rgba(251, 146, 60, 0.45);
+  }
+
+  .dialogue-danger {
+    color: var(--danger); font-style: italic; margin: 1.1rem 0;
+    padding-left: 1rem; border-left: 3px solid rgba(248, 113, 113, 0.45);
+  }
+
+  .dialogue-warning {
+    color: var(--warning); font-style: italic; margin: 1.1rem 0;
+    padding-left: 1rem; border-left: 3px solid rgba(251, 191, 36, 0.45);
+  }
+
+  .post-credits {
+    margin-top: 2.5rem; padding: 2rem 1.25rem;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: rgba(17, 24, 39, 0.6);
+  }
+
+  .post-credits h3 {
+    font-size: 1.1rem; color: var(--pumpkin); margin-bottom: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  .fim {
+    text-align: center; margin-top: 3rem; padding: 2.5rem 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .fim p { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.1em; color: var(--halloween); }
+
+  footer {
+    text-align: center; padding: 2rem 1rem 3rem;
+    color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border);
+  }
+
+  footer span { color: var(--halloween); }
+
+  @media (max-width: 640px) {
+    nav { flex-direction: column; align-items: flex-start; gap: 0.5rem; padding: 0.6rem 1rem; }
+    nav .nav-links { justify-content: flex-start; }
+    main { padding: 6.5rem 1.1rem 3rem; }
+    .cover { padding: 2.5rem 0.5rem 3.5rem; }
+  }
+
+  @media print {
+    nav { display: none; }
+    main { padding-top: 1rem; }
+    .chapter { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#cover" class="logo">NEXUS / HALLOWEEN</a>
+  <div class="nav-links">
+    <a href="#sec1">1</a>
+    <a href="#sec2">2</a>
+    <a href="#sec3">3</a>
+    <a href="#sec4">4</a>
+    <a href="#sec5">5</a>
+    <a href="#sec6">6</a>
+    <a href="#sec7">7</a>
+    <a href="#sec8">8</a>
+    <a href="#pos">+</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- COVER -->
+  <section id="cover" class="cover">
+    <p class="series">NEXUS</p>
+    <p class="series" style="margin-bottom: 2rem;">ESPECIAL DE HALLOWEEN</p>
+    <h1>A Noite em que Nexus Foi Possuído pelo Orçamento Zero</h1>
+    <p class="subtitle">Um capítulo de comédia, caos sobrenatural e doces desaparecidos.</p>
+    <p class="edition">EDIÇÃO ESPECIAL · UNIVERSO NEXUS</p>
+  </section>
+
+  <!-- 1 -->
+  <section id="sec1" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">1</p>
+      <h2>A decoração suspeita</h2>
+    </div>
+
+    <p>A casa de Lucky estava irreconhecível. Teias falsas cobriam as janelas, abóboras iluminadas ocupavam a varanda e morcegos de papel pendiam do teto. Lucky, vestido de vampiro, ajeitava a decoração enquanto Moon!Frost!, usando uma fantasia de lobisomem, observava o resultado.</p>
+
+    <p class="dialogue">— Ficou bom? — perguntou Lucky.</p>
+    <p class="dialogue">— Ficou. Só acho que aquela abóbora está olhando para mim.</p>
+    <p class="dialogue">— É decoração.</p>
+    <p class="dialogue-halloween">— Ela piscou.</p>
+
+    <p>A campainha tocou. Era Apogeu, vestido de bruxa, com um chapéu enorme e uma expressão de absoluta dignidade.</p>
+
+    <p class="dialogue-warning">— Vim exigir doces.</p>
+    <p class="dialogue">— Você está de castigo — lembrou Lucky.</p>
+    <p class="dialogue-warning">— Uma bruxa não reconhece autoridade doméstica.</p>
+    <p class="dialogue">— Uma bruxa sem poderes e sem sobremesa reconhece.</p>
+
+    <p>Apogeu suspirou e colocou um punhado de balas sobre a mesa.</p>
+
+    <p class="dialogue-warning">— Suborno. Agora posso participar?</p>
+  </section>
+
+  <!-- 2 -->
+  <section id="sec2" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">2</p>
+      <h2>A Glitch Code chega para cobrar impostos</h2>
+    </div>
+
+    <p>Um ruído atravessou o ar. A Glitch Code surgiu no meio da sala como se tivesse sido convocada por um erro no sistema. Lua apareceu vestido de ceifador, com uma foice escura. Golden usava uma coroa dourada e uma capa majestosa. Zip estava coberto por um lençol branco com dois buracos para os olhos. Angelus vestia-se como um vampiro clássico.</p>
+
+    <p class="dialogue">— Vocês vieram pedir doces?</p>
+    <p class="dialogue-halloween">— Não. Viemos recolher…</p>
+    <p class="dialogue-warning">— …os impostos atrasados do Halloween!</p>
+    <p class="dialogue">— Isso nem existe! — respondeu Lucky.</p>
+    <p class="dialogue">— Agora existe. Eu trouxe o formulário.</p>
+    <p class="dialogue-halloween">— Está em branco.</p>
+    <p class="dialogue">— É um formulário sobrenatural. O conteúdo aparece quando alguém deve doces.</p>
+  </section>
+
+  <!-- 3 -->
+  <section id="sec3" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">3</p>
+      <h2>Patrulha noturna e um pequeno Pupu</h2>
+    </div>
+
+    <p>Do lado de fora, Aluano e Blood Soldier faziam uma ronda. A noite estava estranhamente silenciosa — até uma pequena figura surgir no caminho. Era Lord Lo.</p>
+
+    <p class="dialogue-halloween">— Pupu!</p>
+    <p class="dialogue">— Identifique-se.</p>
+    <p class="dialogue-halloween">— Pupu!</p>
+
+    <p>Lord Lo apontou para a própria fantasia: uma capa escura e um chapéu de bruxa torto.</p>
+
+    <p class="dialogue">— Acho que ele está fantasiado de… Lord Lo.</p>
+
+    <p>Antes que Soldier pudesse responder, Lord Lo colocou uma abóbora na cabeça dele.</p>
+
+    <p class="dialogue-halloween">— PUPU!</p>
+    <p class="dialogue">— Retire isso imediatamente.</p>
+
+    <p>Aluano começou a rir. Soldier tentou manter a postura, mas a abóbora tinha uma expressão assustadoramente parecida com a dele.</p>
+  </section>
+
+  <!-- 4 -->
+  <section id="sec4" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">4</p>
+      <h2>O concurso de fantasias</h2>
+    </div>
+
+    <p>Insanity decidiu organizar um concurso de fantasias no quintal. Fear apareceu com uma roupa sombria, Hydra!Frost! escolheu algo exageradamente monstruoso e Jonix surgiu com uma fantasia simples, mas elegante.</p>
+
+    <p>Insanity aproximou-se de Jonix.</p>
+
+    <p class="dialogue-danger">— Admito: você está muito bem.</p>
+    <p class="dialogue">— Obrigado.</p>
+    <p class="dialogue-danger">— Poderíamos combinar nossas fantasias. Seria romântico.</p>
+    <p class="dialogue">— Não.</p>
+    <p class="dialogue-danger">— Você nem pensou!</p>
+    <p class="dialogue">— Pensei antes de você terminar a frase.</p>
+
+    <p>O céu ficou vermelho quando Insanity fez uma demonstração de poder para impressionar a plateia. Uma pequena explosão soou atrás dele. Jonix olhou para o chão.</p>
+
+    <p class="dialogue">— Você pisou numa mina.</p>
+    <p class="dialogue-danger">— De novo?!</p>
+    <p class="dialogue">— Talvez o concurso devesse ter uma categoria de sobrevivência.</p>
+  </section>
+
+  <!-- 5 -->
+  <section id="sec5" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">5</p>
+      <h2>A abóbora exigente</h2>
+    </div>
+
+    <p>Uma abóbora gigantesca surgiu no portão. Seus olhos brilhavam e sua boca se abriu numa expressão furiosa.</p>
+
+    <p class="dialogue-halloween">— DOCES. AGORA.</p>
+
+    <p>Apogeu deu um passo à frente.</p>
+
+    <p class="dialogue-warning">— Você possui CPF?</p>
+
+    <p>A abóbora ficou em silêncio.</p>
+
+    <p class="dialogue-warning">— Porque, se não possui, não posso registrar sua solicitação.</p>
+    <p class="dialogue">— Apogeu, não negocie com a abóbora.</p>
+    <p class="dialogue-warning">— Estou tentando resolver diplomaticamente.</p>
+
+    <p>A criatura bateu o pé. As janelas tremeram. Golden apareceu atrás dela e começou a pegar os doces que estavam no cesto.</p>
+
+    <p class="dialogue-warning">— Problema resolvido. Ela está distraída.</p>
+    <p class="dialogue-halloween">— GOLDEN! — gritaram todos.</p>
+  </section>
+
+  <!-- 6 -->
+  <section id="sec6" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">6</p>
+      <h2>O fantasma e o susto de verdade</h2>
+    </div>
+
+    <p>True!Frost! apareceu coberto por um lençol branco, com dois olhos desenhados. Zip apontou para ele.</p>
+
+    <p class="dialogue">— Finalmente! Um fantasma com orçamento!</p>
+    <p class="dialogue">— Eu estou tentando manter o clima — respondeu True!Frost!.</p>
+
+    <p>As luzes se apagaram. Uma presença muito mais assustadora surgiu no corredor: Hollow!One!Frost!. Ninguém falou por um instante.</p>
+
+    <p>Lucky ergueu uma barra de chocolate.</p>
+
+    <p class="dialogue">— Quer?</p>
+
+    <p>Hollow!One!Frost! encarou o doce. Depois, pegou-o cuidadosamente e desapareceu.</p>
+
+    <p class="dialogue">— Acabamos de alimentar o terror absoluto.</p>
+    <p class="dialogue">— Pelo menos ele gostou — disse Lucky.</p>
+  </section>
+
+  <!-- 7 -->
+  <section id="sec7" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">7</p>
+      <h2>A batalha pelo último doce</h2>
+    </div>
+
+    <p>A abóbora gigante avançou novamente. Blood Soldier assumiu a dianteira e acertou um golpe certeiro, fazendo a criatura rolar pelo jardim. Lord Lo correu até ela e colocou um chapéu de bruxa sobre sua cabeça.</p>
+
+    <p class="dialogue-halloween">— Pupu!</p>
+
+    <p>A abóbora parou de se mover.</p>
+
+    <p class="dialogue">— Isso… foi uma vitória? — perguntou Aluano.</p>
+    <p class="dialogue">— Foi uma solução — respondeu Soldier, retirando os restos de abóbora da roupa.</p>
+
+    <p>Enquanto isso, Golden tentava esconder uma sacola cheia de doces. Zip o denunciou imediatamente.</p>
+
+    <p class="dialogue">— Ele roubou tudo!</p>
+    <p class="dialogue-warning">— Eu não roubei. Estou protegendo os doces de pessoas irresponsáveis.</p>
+    <p class="dialogue-halloween">— Você está comendo a prova.</p>
+    <p class="dialogue-warning">— Evidência deliciosa.</p>
+  </section>
+
+  <!-- 8 -->
+  <section id="sec8" class="chapter">
+    <div class="chapter-header">
+      <p class="chapter-number">8</p>
+      <h2>Três da manhã</h2>
+    </div>
+
+    <p>A festa finalmente terminou. Lucky e Moon!Frost! recolheram a decoração, enquanto Apogeu dormia sentado, ainda usando o chapéu de bruxa.</p>
+
+    <p>A televisão ligou sozinha. Uma voz distorcida anunciou:</p>
+
+    <p class="dialogue-danger">— A noite ainda não acabou…</p>
+
+    <p>Todos olharam para a tela. Lord Lo apareceu diante da câmera, usando o mesmo chapéu de bruxa.</p>
+
+    <p class="dialogue-halloween">— Pupu!</p>
+
+    <p>A televisão desligou. Lucky ficou em silêncio por alguns segundos.</p>
+
+    <p class="dialogue">— Vou fingir que não vi.</p>
+    <p class="dialogue">— Boa ideia.</p>
+  </section>
+
+  <!-- PÓS-CRÉDITOS -->
+  <section id="pos" class="chapter">
+    <div class="post-credits">
+      <h3>Pós-créditos — A sopa de Apogeu</h3>
+
+      <p>Às três da manhã, Apogeu acordou dentro de um caldeirão decorativo, coberto por uma manta e com uma colher ao lado.</p>
+
+      <p class="dialogue-warning">— Por que eu estou cozido?!</p>
+
+      <p>Lucky apareceu na porta, segurando uma caneca.</p>
+
+      <p class="dialogue">— Porque você é a sopa.</p>
+
+      <p>Apogeu encarou Lucky.</p>
+
+      <p class="dialogue-warning">— Eu odeio este feriado.</p>
+
+      <p>Do corredor, Lord Lo respondeu:</p>
+
+      <p class="dialogue-halloween">— Pupu!</p>
+
+      <p>E, pela primeira vez naquela noite, Apogeu não teve resposta.</p>
+    </div>
+
+    <div class="fim">
+      <p>— FIM DO ESPECIAL DE HALLOWEEN —</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><span>NEXUS</span> — Especial de Halloween · A Noite do Orçamento Zero</p>
+  <p>Um capítulo de comédia, caos sobrenatural e doces desaparecidos</p>
+</footer>
+
+</body>
+</html>
